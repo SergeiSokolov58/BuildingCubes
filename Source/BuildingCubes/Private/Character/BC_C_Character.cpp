@@ -22,6 +22,8 @@ void ABC_C_Character::BeginPlay()
 {
 	Super::BeginPlay();
 
+	check(BC_CameraComponent);
+	check(BC_FirstPersonMesh);
 }
 
 
@@ -36,5 +38,19 @@ void ABC_C_Character::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	check(PlayerInputComponent);
+
+	PlayerInputComponent->BindAxis(FName("Move Forward / Backward"), this, &ABC_C_Character::MoveForward);
+	PlayerInputComponent->BindAxis(FName("Move Right / Left"), this, &ABC_C_Character::MoveRight);
+}
+
+void ABC_C_Character::MoveForward(float Value)
+{
+	AddMovementInput(GetActorForwardVector(), Value);
+}
+
+void ABC_C_Character::MoveRight(float Value)
+{
+	AddMovementInput(GetActorRightVector(), Value);
 }
 
