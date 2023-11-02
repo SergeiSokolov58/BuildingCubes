@@ -2,6 +2,7 @@
 
 
 #include "Character/BC_C_Character.h"
+#include "Camera/CameraComponent.h"
 
 
 ABC_C_Character::ABC_C_Character()
@@ -9,6 +10,11 @@ ABC_C_Character::ABC_C_Character()
 
 	PrimaryActorTick.bCanEverTick = true;
 
+	BC_CameraComponent = CreateDefaultSubobject<UCameraComponent>("BC_CameraComponent");
+	BC_CameraComponent->SetupAttachment(GetRootComponent());
+
+	BC_FirstPersonMesh = CreateDefaultSubobject<USkeletalMeshComponent>("BC_FirstPersonMesh");
+	BC_FirstPersonMesh->SetupAttachment(BC_CameraComponent);
 }
 
 

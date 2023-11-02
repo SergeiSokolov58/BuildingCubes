@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "BC_C_Character.generated.h"
 
+class UCameraComponent;
+
 UCLASS()
 class BUILDINGCUBES_API ABC_C_Character : public ACharacter
 {
@@ -18,6 +20,12 @@ public:
 protected:
 
 	virtual void BeginPlay() override;
+
+	UPROPERTY(EditDefaultOnly, BlueprintReadWrite, Category="Components")
+	UCameraComponent* BC_CameraComponent;
+
+	UPROPERTY(EditDefaultOnly, BlueprintReadWrite, Category="Components")
+	USkeletalMeshComponent* BC_FirstPersonMesh;
 
 public:
 
